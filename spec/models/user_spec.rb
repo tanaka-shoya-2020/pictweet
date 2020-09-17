@@ -6,6 +6,7 @@ describe User do
   end
 
   describe 'ユーザー新規登録' do
+    
     context '新規登録がうまくいくとき' do
       it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
         expect(@user).to be_valid
@@ -46,7 +47,7 @@ describe User do
       end
       it "passwordが空では登録できない" do
         @user.password = ""
-        # @user.password_confirmation = ""
+        @user.password_confirmation = ""
         @user.valid?
         binding.pry
         expect(@user.errors.full_messages). to include("Password can't be blank")
@@ -62,11 +63,11 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages). to include("Password confirmation doesn't match Password")
       end
-      # it "passwordとpassword_confirmationが存在するが、中身が両者で異なると登録できない" do
-      #   @user.password_confirmation = "barfoo"
-      #   @user.valid?
-      #   expect(@user.errors.full_messages). to include("Password confirmation doesn't match Password")
-      # end
+      it "passwordとpassword_confirmationが存在するが、中身が両者で異なると登録できない" do
+        @user.password_confirmation = "barfoo"
+        @user.valid?
+        expect(@user.errors.full_messages). to include("Password confirmation doesn't match Password")
+      end
     end
   end
 end
