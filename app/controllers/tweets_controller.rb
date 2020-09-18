@@ -14,7 +14,6 @@ class TweetsController < ApplicationController
   end
 
   def create
-    binding.pry
     Tweet.create(tweet_params)
   end
 
