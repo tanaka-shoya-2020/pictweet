@@ -58,6 +58,7 @@ RSpec.describe "ユーザー新規登録", type: :system do
     end
   end
 end
+
 RSpec.describe 'ログイン', type: :system do
   before do
     @user = FactoryBot.create(:user)
